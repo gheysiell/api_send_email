@@ -37,7 +37,7 @@ const send_email = (req, res) => {
             res.json({"message": err})            
         } else {
             res.status(200)
-            res.json({"message": "email successfully sent."})            
+            res.json({"message": "email successfully sent."})
         }
     })
 }
