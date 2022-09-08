@@ -7,7 +7,7 @@ const welcome = (req, res) => {
 }
 
 const send_email = (req, res) => {
-    var qtdPass = 5
+    var qtdPass = req.params.qtd_pass
     var sender = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
         service: 'smtp-mail.outlook.com',
@@ -17,20 +17,28 @@ const send_email = (req, res) => {
             user: config.email_sender,
             pass: config.password_sender
         }
-    })
+    })    
 
     var message = {
         from: config.email_sender,
         to: config.email_recipient,
         subject: 'Passagens com CST 100',
         text: 'Total de passagens com CST 100',
-        html:   `<div style='text-align: center; width: 100%; height: 140px; color: #52E5ED; background: #303843; border-radius: 10px; font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;'>
-                    <h1 style='padding: 8px 0 18px 0; margin: 0;'>WINBPE-WEB</h1>
-                    <h3 style='padding: 0 0 18px 0; margin: 0;'>Um total de ${qtdPass} passagens com CST 100 foram emitidas.</h3>
-                    <h5 style='padding: 10px 0 0 0; margin: 0; color: #fff;'>powered by sicaf systems</h5>
-                </div>`
-    }
-    
+        html:   `<!doctype html>
+                    <html>
+                        <head>
+                            <meta charset="utf-8">
+                        </head>
+                        <body>
+                            <div style='justify-content: center; align-items: center; text-align: center; width: 100%; height: 100px; color: #52E5ED; background: #303843; border-radius: 10px; font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;'>
+                                <h2 style='padding: 5px 0 13px 0; margin: 0;'>WINBPE-WEB</h2>                                
+                                <h4 style='padding: 0 0 12px 0; margin: 0;'>Um total de ${qtdPass} passagens com CST 100 foram emitidas.</h4>
+                                <h5 style='padding: 5px 0 0 0; margin: 0; color: #fff;'>sicaf systems</h5>
+                            </div>
+                        </body>
+                    </html>`
+    }    
+
     sender.sendMail(message, err => {    
         if (err) {
             res.status(404)
