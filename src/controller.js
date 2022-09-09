@@ -2,8 +2,8 @@ const config = require('./configs')
 const nodemailer = require('nodemailer')
 
 const welcome = (req, res) => {
-    res.sendStatus(200)
-    res.json({"message": "welcome to my back-end"})    
+    res.json({"message": "welcome to my back-end"})
+    res.status(200)
 }
 
 const send_email = (req, res) => {
