@@ -11,7 +11,7 @@ const send_email = (req, res) => {
     var sender = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',        
         port: 587,
-        secure: true, // true for 465, false for other ports
+        secure: false, // true for 465, false for other ports
         auth: {
             user: config.email_sender,
             pass: config.password_sender
