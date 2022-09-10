@@ -9,10 +9,9 @@ const welcome = (req, res) => {
 const send_email = (req, res) => {
     var qtdPass = req.params.qtd_pass
     var sender = nodemailer.createTransport({
-        host: 'smtp-mail.outlook.com',
-        service: 'smtp-mail.outlook.com',
+        host: 'smtp-mail.outlook.com',        
         port: 587,
-        secure: false,
+        secure: true, // true for 465, false for other ports
         auth: {
             user: config.email_sender,
             pass: config.password_sender
