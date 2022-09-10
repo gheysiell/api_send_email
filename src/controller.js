@@ -2,16 +2,16 @@ const config = require('./configs')
 const nodemailer = require('nodemailer')
 
 const welcome = (req, res) => {
-    res.json({"message": "welcome to my back-end", "email_sender": config.email_sender,  "email_recipient": config.email_recipient})
+    res.json({"message": "welcome to my back-end"})
     res.status(200)
 }
 
 const send_email = (req, res) => {
     var qtdPass = req.params.qtd_pass
     var sender = nodemailer.createTransport({
-        host: 'smtp.gmail.com', // smtp-mail.outlook.com
+        host: 'smtp.gmail.com',
         port: 587,
-        secure: false, // true for 465, false for other ports
+        secure: false,
         auth: {
             user: config.email_sender,
             pass: config.password_sender
